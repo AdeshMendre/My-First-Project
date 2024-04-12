@@ -1,0 +1,196 @@
+<html>
+
+	<head>
+	
+	
+		<title> Workout </title>
+		
+		
+	</head>
+	<body>
+	<style>
+	body
+     {
+      background-image: url("img4.jpg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size : 1920px 1080px;
+    }
+
+
+h1 {
+     color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+    animation: fadeInDown 1s ease-in-out;
+}
+
+h3{color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+   
+	
+   }
+
+table {
+    width: 300px;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: zoomIn 0.5s ease-in-out;
+}
+
+
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+th {
+    background-color: #4CAF20;
+    color: white;
+}
+
+td {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+td:hover {
+    background-color: #e8e8e8;
+}
+
+input[type="text"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+}
+
+input[type="text"] {
+    background-color: #fff;
+    color: #333;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #4CAF50;
+}
+
+input[type="submit"] {
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+#xx{
+	color: white;
+}
+
+
+
+		</style>
+		
+		
+		
+		<h1 align = "center">Workout</h1>
+		
+		<table border = "1" align="center">
+			<form>
+				<tr>
+					<th>muscle </th>
+					<td> <lable for = "muscle" >  </lable>
+					<select name = "muscle" id = "muscle" >
+					<option value = "abdominals">abdominals</option> 
+					<option value = "abductors">abductors</option>
+                    <option value = "biceps">biceps</option>
+					<option value = "calves">calves</option>
+					<option value = "chest">chest</option>
+                    <option value = "forearms">forearms</option>
+					<option value = "glutes">glutes</option>	
+					<option value = "hamstrings">hamstrings</option>
+                    <option value = "lats">lats</option>
+					<option value = "lower_back">lower_back</option>
+					<option value = "middle_back">middle_back</option>
+                    <option value = "neck">neck</option>
+					<option value = "quadriceps">quadriceps</option>
+					<option value = "traps">traps</option>
+					<option value = "triceps">triceps</option>
+					
+					</td>
+				</tr>
+				
+				<tr>
+					<th>difficulty </th>
+					<td> <lable for = "difficulty" >  </lable>
+					<select name= "difficulty" id = "difficulty" >
+					<option value = "beginner">beginner</option>
+					<option value = "intermediate">intermediate</option>
+					
+					
+					</td>
+				</tr>
+				
+				
+
+				
+			
+				<tr>
+					<th colspan = "2" align ="center"><input type = "submit" value = "submit" id = "submit"></th>
+				</tr>
+				
+				
+			</form>
+		</table>
+		
+	<h3> Name : </h3> <span id = "xx" > </span><br>
+		<script>
+		const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': '5ccad4069amshf32a9f7128ece53p10f5a8jsn2ea1105c0f24',
+		'X-RapidAPI-Host': 'exercises-by-api-ninjas.p.rapidapi.com'
+	}
+};
+		
+		const adesh = (muscle,difficulty,) => {
+		   
+		   muscle.innerHTML = muscle
+		   difficulty.innerHTML = difficulty
+		   
+		   
+		   
+		   fetch('https://exercises-by-api-ninjas.p.rapidapi.com/v1/exercises?muscle=' + muscle + '&difficulty=' + difficulty, options)
+		   .then((response) => {return response.json()})
+			.then((data) => {console.log(data)
+			
+			for(var i = 0; i < data.length; i++){
+			
+			xx.innerHTML=xx.innerHTML  + "<br>" +data[i].name
+				}
+		   })
+		}
+		
+		
+		submit.addEventListener("click",(event) => {
+				event.preventDefault()
+				adesh(muscle.value,difficulty.value,)
+				
+			})
+		</script> 
+		</body>
+		</html>
